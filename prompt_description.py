@@ -9,7 +9,7 @@ This PyQGIS script will iterate through all layers matching the name
 Hitting cancel will exit the loop.
 
 WARNING: This script modifies the original shapefiles. Maintain a separate copy
-for restoration
+for restoration.
 """
 
 import re
