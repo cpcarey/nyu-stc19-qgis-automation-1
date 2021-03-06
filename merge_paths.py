@@ -90,7 +90,7 @@ fail_count = 0
 # Attempt to find and merge path features in all relevant layers. Mark and
 # output the number of successful and failed merges.
 for layer in qgis.core.QgsProject.instance().mapLayers().values():
-    if re.match('2020', layer.name()) and not re.match('auto_merged', layer.name()):
+    if re.match('2020', layer.name()) and not re.search('auto_merged', layer.name()):
         print('Editing layer: {}'.format(layer.name()))
         if merge_path_in_layer(layer):
             success_count += 1
