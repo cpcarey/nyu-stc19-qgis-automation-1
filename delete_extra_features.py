@@ -27,9 +27,15 @@ def confirm_delete(layer):
         if not re.match('2020', f.attribute('Name'))
     ]
     layer.selectByIds(fids)
+    
+    description = ''
+    for f in layer.getFeatures():
+        if re.match('2020', f.attribute('Name')):
+            description = f.attribute('descriptio')
+        
 
     box = QMessageBox()
-    response = QMessageBox.question(box, '', 'Delete all non-path features?')
+    response = QMessageBox.question(box, 'Delete all non-path features?', description)
 
     if response == QMessageBox.Yes:
         layer.startEditing()

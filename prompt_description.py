@@ -63,7 +63,7 @@ for layer in qgis.core.QgsProject.instance().mapLayers().values():
     # Only prompts for layers matching the _merged name. Remove this
     # requirement if the layers have already been merged and contain a single
     # path feature with the name prefix "2020".
-    if re.search('_merged', layer.name()) and not exit:
+    if re.search('_merged', layer.name()) and not re.search('_described', layer.name()) and not exit:
         for feature in layer.getFeatures():
             name = feature.attribute(ATTR_NAME)
             if re.match(MERGED_FEATURE_NAME_PREFIX, name):
