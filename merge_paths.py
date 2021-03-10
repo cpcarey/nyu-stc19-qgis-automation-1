@@ -41,7 +41,7 @@ def merge_path_in_layer(layer):
     path_features = [f for f in layer.getFeatures() if len(f.geometry().asMultiPolygon()) == 1]
 
     # Skip this layer if there aren't enough identified path features to merge.
-    if len(path_features) < 2:
+    if len(path_features) < 1:
         print('    Failed to edit: contained {} features'.format(len(path_features)))
         return False
 
