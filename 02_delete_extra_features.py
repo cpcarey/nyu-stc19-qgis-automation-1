@@ -7,6 +7,12 @@ layers matching user-specified criteria:
     (2) Prompt user to confirm deletion
     (3) Delete non-path features upon confirmation
 
+Prerequisites:
+    - Requires the layers processed from 01_merge_paths.py or manually with
+      the SUFFIX_CLEANABLE suffix in the name to be loaded
+    - Necessary to unselect all layers (except OpenStreetMap) to see the
+      non-path features being deleted during user confirmation.
+
 Selecting "No" will end the layer iteration loop.
 
 WARNING: This modifies local shapefiles in-place. Maintain a separate copy for
@@ -41,16 +47,9 @@ def confirm_delete(layer):
     ]
     layer.selectByIds(fids)
 
-    description = ''
-    for f in layer.getFeatures():
-        if re.match('2020', f.attribute('Name')):
-            description = f.attribute('descriptio')
-
-    if not description:
-        description = ''
     box = QMessageBox()
     response = QMessageBox.question(
-            box, 'Delete all non-path features?', description)
+            box, 'Delete all non-path features?', 'Delete features in yellow?')
 
     if response == QMessageBox.Yes:
         layer.startEditing()
