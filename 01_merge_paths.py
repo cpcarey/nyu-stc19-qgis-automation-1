@@ -17,10 +17,10 @@ The script operates by assuming that path features are multi-polygons containing
 a small number of polygons (controlled by MAX_POLYGONS_IN_PATH_FEATURE_POLYGON).
 This is because non-path features are almost always multi-polygons representing
 text with an individual polygon for each character. Put another way, path
-features are groups of few polygons and non-path features are groups of lots of
-polygons. This assumption may not hold if for layers with minimal text
-displayed. The most common number of polygons in a path feature is a
-multi-polygon; each trajectory line is typically a single polygon within a
+features are groups of few polygons and non-path features are groups of many
+polygons. This assumption may not hold for layers with minimal text
+displayed. The most common number of polygons in a path feature is one;
+each trajectory line is typically a single polygon within a
 multi-polygon even if when there are multi-polygons.
 
 It is uncommon for path feature multi-polygons to contain two polygons and
@@ -34,7 +34,7 @@ path features to check the timestamp for, the script will mark the layers as
 failed with zero identified path features. The user will then need to maark
 this multi-polygon as the path feature manually.
 
-Difference from previous merge_paths.py.
+Difference from previous merge_paths.py:
 
 The previous merge_path.py script combined path feature polygons into a
 single polygon multi-polygon by taking the spatial union of the polygons. This
